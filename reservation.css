@@ -1,0 +1,119 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.title{
+  font-size: 50px;
+  color: white;
+}
+
+body {
+  width: 500px;
+  margin: 0 auto;
+  padding: 50px;
+  background-image: url(https://drive.google.com/uc?id=1y1A6NfKtZUnm_kYDseEGK3xkNXGsT0v9);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+div.elem-group {
+  margin: 20px 0;
+  color: white;
+}
+
+div.elem-group.inlined {
+  color: white;
+  width: 49%;
+  display: inline-block;
+  float: left;
+  margin-left: 1%;
+}
+
+label {
+  display: block;
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+
+
+input, select, textarea {
+  color: grey;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  box-sizing: border-box;
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+}
+
+
+textarea {
+  height: 250px;
+}
+
+hr {
+  border-color: palevioletred;
+}
+
+button {
+  height: 50px;
+  background: black;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: palevioletred;
+}
+
+
+#name:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+#email:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+#phone:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+#adult:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+#child:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+#checkin-date:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+#checkout-date:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+#room-selection:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+#message:hover{
+  border-color: palevioletred;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+
