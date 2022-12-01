@@ -1,0 +1,161 @@
+create table PLACES
+(
+    PLACE_ID           CHAR(10)              not null,
+    NAME_PLACE         CHAR(45)                      ,
+    DESCRIPTION        CHAR(100)                     ,
+    PRICE              FLOAT                         ,
+    STATUS             CHAR(10)                      ,
+    primary key (PLACE_ID)
+);
+
+create unique index PLACES_PK on PLACES (PLACE_ID asc);
+
+create table CUSTOMER
+(
+    CUSTOMER_ID        CHAR(10)              not null,
+    ACCOUNT_ID         CHAR(10)              not null,
+    NAMA               CHAR(45)                      ,
+    EMAIL              CHAR(45)                      ,
+    GENDER             CHAR(1)                       ,
+    NOHP               CHAR(12)                      ,
+    primary key (CUSTOMER_ID),
+    foreign key  (ACCOUNT_ID)
+       references ACCOUNTS (ACCOUNT_ID)
+);
+
+create unique index CUSTOMER_PK on CUSTOMER (CUSTOMER_ID asc);
+
+create index MEMILIKI_FK2 on CUSTOMER (ACCOUNT_ID asc);
+
+create table ACCOUNTS
+(
+    ACCOUNT_ID         CHAR(10)              not null,
+    CUSTOMER_ID        CHAR(10)              not null,
+    CREW_ID            CHAR(10)              not null,
+    USERNAME           CHAR(10)                      ,
+    PASSWORD           CHAR(45)                      ,
+    ACCOUNT_TYPE       CHAR(2)                       ,
+    primary key (ACCOUNT_ID),
+    foreign key  (CUSTOMER_ID)
+       references CUSTOMER (CUSTOMER_ID),
+    foreign key  (CREW_ID)
+       references CREW (CREW_ID)
+);
+
+create unique index ACCOUNTS_PK on ACCOUNTS (ACCOUNT_ID asc);
+
+create index MEMILIKI_FK on ACCOUNTS (CUSTOMER_ID asc);
+
+create index PUNYA_FK2 on ACCOUNTS (CREW_ID asc);
+
+create table TRANSACTION
+(
+    TRANSACTION_ID     CHAR(10)              not null,
+    CUSTOMER_ID        CHAR(10)              not null,
+    PAYMENT_ID         CHAR(10)              not null,
+    CREW_ID            CHAR(10)              not null,
+    TRANSACTION_DATE   DATE                          ,
+    primary key (TRANSACTION_ID),
+    foreign key  (CUSTOMER_ID)
+       references CUSTOMER (CUSTOMER_ID),
+    foreign key  (PAYMENT_ID)
+       references PAYMENT (PAYMENT_ID),
+    foreign key  (CREW_ID)
+       references CREW (CREW_ID)
+);
+
+create unique index TRANSACTION_PK on TRANSACTION (TRANSACTION_ID asc);
+
+create index MENDAPATKAN_FK on TRANSACTION (CUSTOMER_ID asc);
+
+create index INCLUDE_FK2 on TRANSACTION (PAYMENT_ID asc);
+
+create index RELATION_02_FK on TRANSACTION (CREW_ID asc);
+
+create table CREW
+(
+    CREW_ID            CHAR(10)              not null,
+    ACCOUNT_ID         CHAR(10)              not null,
+    CREW_NAME          CHAR(45)                      ,
+    JOB_TITLE          CHAR(45)                      ,
+    ASSIGMENT          CHAR(45)                      ,
+    DETAILS            CHAR(100)                     ,
+    primary key (CREW_ID),
+    foreign key  (ACCOUNT_ID)
+       references ACCOUNTS (ACCOUNT_ID)
+);
+
+create unique index CREW_PK on CREW (CREW_ID asc);
+
+create index PUNYA_FK on CREW (ACCOUNT_ID asc);
+
+create table PAYMENT
+(
+    PAYMENT_ID         CHAR(10)              not null,
+    TRANSACTION_ID     CHAR(10)              not null,
+    CUSTOMER_ID        CHAR(10)              not null,
+    AMOUNT             FLOAT                         ,
+    METHOD             CHAR(15)                      ,
+    primary key (PAYMENT_ID),
+    foreign key  (TRANSACTION_ID)
+       references TRANSACTION (TRANSACTION_ID),
+    foreign key  (CUSTOMER_ID)
+       references CUSTOMER (CUSTOMER_ID)
+);
+
+create unique index PAYMENT_PK on PAYMENT (PAYMENT_ID asc);
+
+create index INCLUDE_FK on PAYMENT (TRANSACTION_ID asc);
+
+create index MENYELESAIKAN_FK on PAYMENT (CUSTOMER_ID asc);
+
+create table ROOM_TYPE
+(
+    TYPE_ID            CHAR(10)              not null,
+    PLACE_ID           CHAR(10)              not null,
+    TYPE_NAME          CHAR(45)                      ,
+    TYPE_DESCRIPTION   CHAR(100)                     ,
+    primary key (TYPE_ID),
+    foreign key  (PLACE_ID)
+       references PLACES (PLACE_ID)
+);
+
+create unique index ROOM_TYPE_PK on ROOM_TYPE (TYPE_ID asc);
+
+create index TIPE_KAMAR_FK on ROOM_TYPE (PLACE_ID asc);
+
+create table RESERVATION
+(
+    RESERVATION_ID     CHAR(10)              not null,
+    CUSTOMER_ID        CHAR(10)              not null,
+    TRANSACTION_ID     CHAR(10)              not null,
+    PLACE_ID           CHAR(10)              not null,
+    CREW_ID            CHAR(10)              not null,
+    NAMA_RESERVATION   CHAR(45)                      ,
+    EMAIL_RESERVATION  CHAR(45)                      ,
+    NOHP_RESERVATION   CHAR(12)                      ,
+    ADULTS             INTEGER                       ,
+    CHILDREN           INTEGER                       ,
+    DATE_IN            DATE                          ,
+    DATE_OUT           DATE                          ,
+    CATATAN            CHAR(100)                     ,
+    primary key (RESERVATION_ID),
+    foreign key  (CUSTOMER_ID)
+       references CUSTOMER (CUSTOMER_ID),
+    foreign key  (TRANSACTION_ID)
+       references TRANSACTION (TRANSACTION_ID),
+    foreign key  (PLACE_ID)
+       references PLACES (PLACE_ID),
+    foreign key  (CREW_ID)
+       references CREW (CREW_ID)
+);
+
+create unique index RESERVATION_PK on RESERVATION (RESERVATION_ID asc);
+
+create index MELAKUKAN_FK on RESERVATION (CUSTOMER_ID asc);
+
+create index MENGHASILKAN_FK on RESERVATION (TRANSACTION_ID asc);
+
+create index MEMILIH_FK on RESERVATION (PLACE_ID asc);
+
+create index RELATION_01_FK on RESERVATION (CREW_ID asc);
